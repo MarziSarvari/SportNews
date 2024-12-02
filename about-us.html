@@ -13,20 +13,38 @@
           <div class="overlap-group">
             <div class="rectangle"></div>
             <img class="sport-news-high" src="img/logo.png" />
-            <p class="text-wrapper">Copyright © 2024 Sport News. All rights reserved. Published by CZU students.</p>
+            <p class="text-wrapper">Copyright © 2024 Sport News. All rights reserved.</p>
+            <p class="text-wrapper-50"> Published by CZU students.</p>
           </div>
           <div class="social-networkes">
-            <img class="twitter" src="img/twitter-1.png" />
-            <img class="instagram-logo" src="img/instagram-logo-1.png" />
-            <img class="facebook" src="img/facebook-1.png" />
-            <img class="tik-tok" src="img/tik-tok-1.png" />
-            <img class="youtube" src="img/youtube-1.png" />
-            <img class="whatsapp" src="img/whatsapp-1.png" />
-            <img class="telegram" src="img/telegram-1.png" />
-          </div>
+            <a href="https://twitter.com" target="_blank">
+                <img class="twitter" src="img/twitter-1.png" alt="Twitter" />
+            </a>
+            <a href="https://instagram.com" target="_blank">
+                <img class="instagram-logo" src="img/instagram-logo-1.png" alt="Instagram" />
+            </a>
+            <a href="https://facebook.com" target="_blank">
+                <img class="facebook" src="img/facebook-1.png" alt="Facebook" />
+            </a>
+            <a href="https://tiktok.com" target="_blank">
+                <img class="tik-tok" src="img/tik-tok-1.png" alt="TikTok" />
+            </a>
+            <a href="https://youtube.com" target="_blank">
+                <img class="youtube" src="img/youtube-1.png" alt="YouTube" />
+            </a>
+            <a href="https://whatsapp.com" target="_blank">
+                <img class="whatsapp" src="img/whatsapp-1.png" alt="WhatsApp" />
+            </a>
+            <a href="https://telegram.org" target="_blank">
+                <img class="telegram" src="img/telegram-1.png" alt="Telegram" />
+            </a>
+        </div>
           <p class="terms-conditions">
-            Terms &amp; Conditions<br /> <br />Privacy &amp; Cookies Notice<br /> <br />Privacy Options<br /> <br />Accessibility
-            Information<br /> <br />Contact Us
+            <a href="about-us.html" target="_blank">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="terms.html" target="_blank">Terms of Services</a>
+            <br /><br />
+            Authors:<br />
+            Mohsen Amirian | Marziye Sarvarizade | Ognjen Ostojic
           </p>
           <img class="line" src="img/line-1.svg" />
         </footer>
@@ -60,14 +78,52 @@
           </div>
         </div>
         <div class="element-header">
-            <img class="sport-news-high" src="img/logo.png" />
-            <div class="menu">
-              <img src="img/Menu.png"/>
-            </div>
-            <img class="magnifying-glass" src="img/search.png" />
-            <img class="user-icon" src="img/user2.png" alt="Profile">
+          <a href="./home.html">            
+            <img class="sport-news-high" src="img/logo.png" alt="Logo"  />
+          </a>
+          <div class="menu">
+              <img src="img/Menu.png" alt="Menu Icon" onclick="toggleMenu()" />
+              <div class="dropdown-menu">
+                  <a href="#buy-subscription">Buy Subscription</a>
+                  <a href="./about-us.html">About Us</a>
+                  <a href="#contact-us">Contact Us</a>
+                  <a href="#signin" id="signin-btn">Sign In</a>
+              </div>
+          </div>
+          <img class="magnifying-glass" src="img/search.png" alt="Search" />
+          <img class="user-icon" src="img/user2.png" alt="Profile" />
         </div>
       </div>
     </div>
   </body>
+  <script>
+    function toggleMenu() {
+       const menu = document.querySelector('.menu');
+       menu.classList.toggle('active');
+   }
+   
+   // Close menu when clicking outside
+   document.addEventListener('click', function (event) {
+       const menu = document.querySelector('.menu');
+       const isClickInsideMenu = menu.contains(event.target);
+   
+       if (!isClickInsideMenu) {
+           menu.classList.remove('active');
+       }
+   });
+   
+   // Handle Sign In/Log Out logic
+   document.getElementById('signin-btn').addEventListener('click', function (event) {
+       event.stopPropagation(); // Prevent click from propagating to the document
+       if (this.textContent === 'Sign In') {
+           // Handle sign-in logic
+           this.textContent = 'Log Out';
+       } else {
+           // Handle log-out logic
+           this.textContent = 'Sign In';
+       }
+   });
+     
+   
+     </script>
 </html>

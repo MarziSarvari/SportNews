@@ -1317,31 +1317,80 @@
     line-height: normal;
   }
   
+  /* Base styles */
   .home-PAGE .element-header {
-    position: absolute;
-    width: 440px;
-    height: 62px;
-    top: 0;
-    left: 0;
-    background-color: #0a1627;
+  position: absolute;
+  width: 100%;
+  height: 62px;
+  top: 0;
+  left: 0;
+  background-color: #0a1627;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.home-PAGE .sport-news-high {
+  position: absolute;
+  width: 165px;
+  height: 62px;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+} 
+
+.home-PAGE .menu {
+  position: absolute;
+  width: 33px;
+  height: 24px;
+  top: 19px;
+  left: 391px;
+  cursor: pointer;
+}
+
+.home-PAGE .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 62px; /* Align below the header */
+  right: 0;
+  background-color: #dbdbdb;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1000;
+  width: 200px;
+}
+
+.home-PAGE .dropdown-menu a {
+  display: block;
+  font-family: "Jost";
+  padding: 10px 15px;
+  color: #0a1627;
+  text-decoration: none;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s;
+}
+
+.home-PAGE .dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.home-PAGE .dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .home-PAGE .magnifying-glass, .user-icon {
+      display: none; /* Hide unnecessary icons on small screens */
   }
-  
-  .home-PAGE .sport-news-high {
-    position: absolute;
-    width: 165px;
-    height: 62px;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-  }
-  
-  .home-PAGE .menu {
-    position: absolute;
-    width: 33px;
-    height: 24px;
-    top: 19px;
-    left: 391px;
-  }
+}
+
+/* Show dropdown when menu is active */
+.home-PAGE .menu.active .dropdown-menu {
+  display: block;
+}
   
     
   .home-PAGE .magnifying-glass {
