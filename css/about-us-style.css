@@ -341,7 +341,7 @@
 .about-us .dropdown-menu {
   display: none;
   position: absolute;
-  top: 62px; /* Align below the header */
+  top: 45px; /* Align below the header */
   right: 0;
   background-color: #dbdbdb;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -380,21 +380,140 @@
   display: block;
 }
   
+ 
 
-  
+.about-us .user-menu {
+  position: absolute; /* Allows precise placement */
+  top: 13px;          /* Set to the desired vertical position */
+  left: 338px;        /* Set to the desired horizontal position */
+  width: 36px;        /* Match the size of the icon */
+  height: 36px;
+}
+
+.about-us .user-icon {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.about-us .dropdown-user-menu {
+  display: none;
+  position: absolute;
+  top: 50px; /* Adjust to sit below the icon */
+  right: 0;
+  background-color: #dbdbdb;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1000;
+  width: 150px;
+}
+
+.about-us .dropdown-user-menu a {
+  display: block;
+  font-family: "Jost";
+  padding: 10px;
+  color: #0a1627;
+  text-decoration: none;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s;
+}
+
+.about-us .dropdown-user-menu a:last-child {
+  border-bottom: none;
+}
+
+.about-us .dropdown-user-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+.about-us .user-menu.active .dropdown-user-menu {
+  display: block;
+}
+
+/* Search container */
+.about-us .search-container {
+  position: absolute;
+  top: 13px;         /* Vertical position */
+  left: 230px;       /* Horizontal position for the magnifier */
+  height: 36px;      /* Match magnifier height */
+  width: 100px;      /* Expanded container width */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Magnifier stays on the right */
+  overflow: visible; /* Ensure visibility of expanding input box */
+}
+
+/* Magnifying glass icon */
 .about-us .magnifying-glass {
   position: absolute;
+  right: 0; /* Stick to the far-right end */
   width: 36px;
   height: 36px;
-  top: 13px;
-  left: 295px;
-  object-fit: cover;
+  cursor: pointer;
+  z-index: 2; /* Ensure it's above the input field */
 }
-.about-us .user-icon {
+
+/* Input box */
+.about-us .search-box {
   position: absolute;
-  width: 36px;
-  height: 36px;
-  top: 13px;
-  left: 338px;
-  object-fit: cover;
+  right: 36px; /* Start just left of the magnifier */
+  width: 0;    /* Hidden by default */
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 0 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  opacity: 0; /* Invisible by default */
+  z-index: 1; /* Behind the magnifier */
+}
+
+/* Hover effect: Expand the input box */
+.about-us .search-container:hover .search-box {
+  width: 100px; /* Expand the input box */
+  opacity: 1;   /* Make it visible */
+}
+
+.about-us .search-container:hover .magnifying-glass {
+  transform: scale(0.8); /* Slightly shrink the magnifier for effect */
+}
+
+
+/* Search results dropdown */
+.about-us .search-results {
+  position: absolute;
+  top: 50px; /* Below the search box */
+  left: 0;
+  width: 150%;
+  background-color: #dbdbdb; /* Same background as the user menu */
+  border: 1px solid #ccc;    /* Same border as user menu */
+  border-radius: 4px;
+  display: none; /* Hidden by default */
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+/* Individual search result items */
+.about-us .search-results .result-item {
+  padding: 10px;
+  color: #0a1627; /* Darker text color */
+  text-decoration: none;
+  display: block;
+  font-family: "Jost", Helvetica; /* Similar to user menu items */
+  font-weight: 500;
+}
+
+/* Hover effect on result items */
+.about-us .search-results .result-item:hover {
+  background-color: #f0f0f0;  /* Light background on hover */
+  color: #5ed746;             /* Change text color on hover */
+}
+
+/* Show search results when typing */
+.about-us .search-results .result-item:active {
+  background-color: #c2c2c2;  /* Highlight on click */
 }

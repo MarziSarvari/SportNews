@@ -43,14 +43,14 @@
         </div>
         <p class="terms-conditions">
           <a href="about-us.html" target="_blank">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-          <a href="terms.html" target="_blank">Terms of Services</a>
+          <a href="terms-condition.html" target="_blank">Terms of Services</a>
           <br /><br />
           Authors:<br />
           Mohsen Amirian | Marziye Sarvarizade | Ognjen Ostojic
         </p>
         <img class="line" src="img/line-1.svg" />
       </footer>
-      
+
       <div class="element-header">
         <a href="./home.html">
           <img class="sport-news-high" src="img/logo.png" alt="Logo" />
@@ -58,14 +58,27 @@
         <div class="menu">
           <img src="img/Menu.png" alt="Menu Icon" onclick="toggleMenu()" />
           <div class="dropdown-menu">
-            <a href="#buy-subscription">Buy Subscription</a>
+            <a href="buy-subscription.html">Buy Subscription</a>
+            <a href="latest-news-category.html">Latest News</a>
             <a href="./about-us.html">About Us</a>
-            <a href="#contact-us">Contact Us</a>
-            <a href="#signin" id="signin-btn">Sign In</a>
+            <a href="contact-us.html">Contact Us</a>
+            <a href="terms-condition.html">Terms of our Services</a>
           </div>
         </div>
-        <img class="magnifying-glass" src="img/search.png" alt="Search" />
-        <img class="user-icon" src="img/user2.png" alt="Profile" />
+        <div class="search-container">
+          <img class="magnifying-glass" src="img/search.png" alt="Search" />
+          <input type="text" class="search-box" placeholder="Search..." onkeyup="showResults(this.value)" />
+          <div id="search-results" class="search-results">
+            <!-- Dynamic search results will appear here -->
+          </div>
+        </div>
+        <div class="user-menu">
+          <img class="user-icon" src="img/user2.png" alt="Profile" onclick="toggleUserMenu()" />
+          <div class="dropdown-user-menu">
+            <a href="login.html" id="signin-btn">Sign In</a>
+            <a href="register.html">Register</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -98,6 +111,94 @@
     }
   });
 
+
+  function toggleUserMenu() {
+    const userMenu = document.querySelector('.user-menu');
+    userMenu.classList.toggle('active');
+  }
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function (event) {
+    const userMenu = document.querySelector('.user-menu');
+    const isClickInsideMenu = userMenu.contains(event.target);
+
+    if (!isClickInsideMenu) {
+      userMenu.classList.remove('active');
+    }
+  });
+
+  document.addEventListener('click', function (event) {
+  const searchContainer = document.querySelector('.search-container');
+  const resultsContainer = document.getElementById('search-results');
+
+  // Check if the click occurred inside the search container
+  if (!searchContainer.contains(event.target)) {
+    resultsContainer.style.display = 'none'; // Hide the search results
+  }
+});
+
+  function showResults(query) {
+  const resultsContainer = document.getElementById('search-results');
+
+  // If input is empty, hide the results
+  if (!query) {
+    resultsContainer.style.display = 'none';
+    return;
+  }
+
+  // Show results container
+  resultsContainer.style.display = 'block';
+
+  // Clear any previous results
+  resultsContainer.innerHTML = '';
+
+  // Array of random words/phrases
+  const randomWordsBefore = [
+  "Breaking:", 
+  "Latest:", 
+  "Trending:", 
+  "Featured:", 
+  "Exclusive:", 
+  "Hot Topic:", 
+  "Don't Miss:", 
+  "Just In:", 
+  "Top Story:", 
+  "Must Read:", 
+  "Highlight:",
+  "Fresh News:"
+];
+
+const randomWordsAfter = [
+  "in Sports", 
+  "Today", 
+  "News Update", 
+  "Highlights", 
+  "Around the World", 
+  "for You", 
+  "2024 Edition", 
+  "Special Coverage", 
+  "Breaking Analysis", 
+  "Insider Look", 
+  "Latest Developments", 
+  "Exclusive Details"
+];
+
+  // Generate search result items
+  const numResults = 5; // Limit number of results
+  for (let i = 1; i <= numResults; i++) {
+    const resultItem = document.createElement('a');
+    resultItem.href = `detail-article.html`; // Navigation link
+    resultItem.classList.add('result-item');
+
+    // Select random words
+    const randomBefore = randomWordsBefore[Math.floor(Math.random() * randomWordsBefore.length)];
+    const randomAfter = randomWordsAfter[Math.floor(Math.random() * randomWordsAfter.length)];
+
+    // Set dynamic content
+    resultItem.textContent = `${randomBefore} ${query} ${randomAfter}`;
+    resultsContainer.appendChild(resultItem);
+  }
+};
 
 </script>
 
