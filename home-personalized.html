@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="css/login-styleguide.css" />
-  <link rel="stylesheet" href="css/login-style.css" />
+  <link rel="stylesheet" href="css/home-personalized-styleguide.css" />
+  <link rel="stylesheet" href="css/home-personalized-style.css" />
   <link rel="stylesheet" href="https://indestructibletype.com/fonts/Jost.css" type="text/css" charset="utf-8" />
 </head>
 
 <body>
-  <div class="login">
+  <div class="home-personalized">
     <div class="div">
       <footer class="footer">
         <div class="overlap-group">
@@ -51,24 +51,15 @@
         <img class="line" src="img/line-1.svg" />
       </footer>
 
-      <main class="login-main">
-        <h1>Login</h1>
+      
+      <main class="home-main">
+        <section class="welcome-section">
+          <h1 id="welcome-message">Welcome!</h1>
+          <p id="personalized-message">Here's what's trending for you.</p>
+        </section>
 
-        <section class="login-form">
-          <form id="login-form" action="#">
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required placeholder="Enter your email" />
-            </div>
-
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password" required placeholder="Enter your password" />
-            </div>
-
-            <button type="submit" class="submit-button">Login</button>
-          </form>
-          <section id="login-message" class="message-section" style="display:none;"></section>
+        <section class="personalized-content" id="content-section">
+          <!-- Dynamic content will be inserted here -->
         </section>
       </main>
 
@@ -96,8 +87,8 @@
         <div class="user-menu">
           <img class="user-icon" src="img/user2.png" alt="Profile" onclick="toggleUserMenu()" />
           <div class="dropdown-user-menu">
-            <a href="login.html" id="signin-btn">Sign In</a>
-            <a href="register.html">Register</a>
+            <a href="profile.html" id="signin-btn">Profile</a>
+            <a id="logout-link">Log Out</a>
           </div>
         </div>
       </div>
@@ -222,56 +213,150 @@ const randomWordsAfter = [
 };
 
 
-// Predefined credentials for personas
-const users = [
-  {
-    name: "Jake Thompson",
-    email: "jake.thompson@example.com",
-    password: "soccer123",
-  },
-  {
-    name: "Lisa Martinez",
-    email: "lisa.martinez@example.com",
-    password: "sportsblog321",
-  },
-  {
-    name: "Ethan Kim",
-    email: "ethan.kim@example.com",
-    password: "basketball456",
-  },
-];
+// User interests content
+const contentByUser = {
+  "Jake Thompson": [
+    {
+      type: "article",
+      title: "Top 10 Soccer Goals of 2024",
+      description: "Relive the most exciting moments from this season’s soccer matches.",
+      link: "articles/soccer-goals.html",
+    },
+    {
+      type: "article",
+      title: "The Rise of Women's Soccer: Global Impact",
+      description: "An in-depth look at the growing popularity of women's soccer worldwide.",
+      link: "articles/women-soccer.html",
+    },
+    {
+      type: "video",
+      title: "How Soccer Tactics Have Evolved",
+      description: "A documentary on the strategic changes in soccer tactics over the decades.",
+      link: "videos/soccer-tactics-evolution.html",
+    },
+    {
+      type: "podcast",
+      title: "Soccer Analytics: What Stats Matter?",
+      description: "Join experts as they discuss the most important stats in soccer analytics.",
+      link: "podcasts/soccer-analytics.html",
+    },
+    {
+      type: "article",
+      title: "The Best Soccer Clubs in Europe: Ranked",
+      description: "A detailed ranking of Europe's top soccer clubs based on performance.",
+      link: "articles/best-soccer-clubs.html",
+    },
+  ],
+  "Lisa Martinez": [
+    {
+      type: "article",
+      title: "How to Write Engaging Sports Blogs",
+      description: "Tips and tricks to captivate your readers with exciting match recaps.",
+      link: "articles/write-blogs.html",
+    },
+    {
+      type: "photo",
+      title: "Best Photos from Last Week's Games",
+      description: "A gallery of stunning shots from recent sports events.",
+      link: "photos/best-shots.html",
+    },
+    {
+      type: "analysis",
+      title: "In-Depth Match Analysis: Championship Final",
+      description: "Breaking down the strategies and key moments of the final match.",
+      link: "analysis/championship-final.html",
+    },
+    {
+      type: "article",
+      title: "How to Create a Sports Blog That Attracts Readers",
+      description: "Step-by-step guide to building a sports blog with a loyal audience.",
+      link: "articles/sports-blog-guide.html",
+    },
+    {
+      type: "podcast",
+      title: "Interview with a Sports Journalist",
+      description: "Join Lisa as she talks with a veteran sports journalist about breaking news.",
+      link: "podcasts/sports-journalist-interview.html",
+    },
+  ],
+  "Ethan Kim": [
+    {
+      type: "video",
+      title: "Best Basketball Highlights of the Year",
+      description: "Watch the top plays and buzzer-beaters from this season.",
+      link: "videos/basketball-highlights.html",
+    },
+    {
+      type: "meme",
+      title: "Trending Sports Memes",
+      description: "Laugh out loud with these viral memes sweeping the sports world.",
+      link: "memes/trending-memes.html",
+    },
+    {
+      type: "article",
+      title: "Top Tips to Improve Your Basketball Skills",
+      description: "Level up your performance with these proven strategies.",
+      link: "articles/basketball-tips.html",
+    },
+    {
+      type: "video",
+      title: "The Evolution of Basketball Sneakers",
+      description: "A documentary about how basketball shoes have changed over time.",
+      link: "videos/basketball-sneakers-evolution.html",
+    },
+    {
+      type: "article",
+      title: "Understanding Basketball Analytics",
+      description: "A beginner's guide to understanding the advanced stats used in basketball.",
+      link: "articles/basketball-analytics.html",
+    },
+    {
+      type: "podcast",
+      title: "The Future of Esports",
+      description: "Experts discuss where esports is headed and its growing influence on traditional sports.",
+      link: "podcasts/future-of-esports.html",
+    },
+  ],
+};
 
-// Handle login form submission
-document.getElementById("login-form").addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevent form reload
+// Display personalized content
+function displayPersonalizedContent() {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const contentSection = document.getElementById("content-section");
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+  if (user && contentByUser[user.name]) {
+    const contentItems = contentByUser[user.name];
 
-  // Find matching user
-  const user = users.find((u) => u.email === email && u.password === password);
-
-  const loginMessage = document.getElementById("login-message");
-
-  if (user) {
-    // Successful login
-    loginMessage.textContent = `Welcome, ${user.name}!`;
-    loginMessage.style.color = "#5ed746"; // Success color
-    loginMessage.style.display = "block";
-
-    // Save user data to localStorage
-    localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-    // Redirect to home-personalized.html
-    setTimeout(() => {
-      window.location.href = "home-personalized.html";
-    }, 2000);
+    contentSection.innerHTML = contentItems
+      .map(
+        (item) => `
+        <div class="content-item">
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <a href="detail-article.html?article=${encodeURIComponent(item.title)}" class="read-more-link">Read More</a>
+        </div>
+      `
+      )
+      .join("");
   } else {
-    // Failed login
-    loginMessage.textContent = "Invalid email or password. Please try again.";
-    loginMessage.style.color = "#ff4c4c"; // Error color
-    loginMessage.style.display = "block";
+    contentSection.innerHTML = `<p>No personalized content available. Log in to see your content.</p>`;
   }
+}
+
+// Logout function
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  alert("You have been logged out.");
+  window.location.href = "login.html"; // Redirect to login page
+}
+
+// Initialize
+displayPersonalizedContent();
+
+// Add logout functionality to logout link
+document.getElementById("logout-link").addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  logout();
 });
 
 
