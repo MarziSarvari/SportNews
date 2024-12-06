@@ -187,46 +187,53 @@
       <div class="element-live-main">
         <img class="line-2" src="img/line-1.svg" />
         <div class="overlap-3">
-          <div class="text-wrapper-27">24 Oct 2024</div>
-          <div class="text-wrapper-28">Full Time</div>
-          <div class="overlap-4">
-            <div class="text-wrapper-29">2 - 3</div>
-            <div class="text-wrapper-30">FENERBAHCE</div>
-            <div class="text-wrapper-31">MAN UTD</div>
-            <img class="fenerbahce" src="img/fenerbahce.png" />
-          </div>
-          <img class="manchester-logo" src="img/manchester-logo.png" />
+          <a href="live_fenerbahce.html">
+
+            <div class="text-wrapper-27">24 Oct 2024</div>
+            <div class="text-wrapper-28">Full Time</div>
+            <div class="overlap-4">
+              <div class="text-wrapper-29">2 - 3</div>
+              <div class="text-wrapper-30">FENERBAHCE</div>
+              <div class="text-wrapper-31">MAN UTD</div>
+              <img class="fenerbahce" src="img/fenerbahce.png" />
+            </div>
+            <img class="manchester-logo" src="img/manchester-logo.png" />
+          </a>
         </div>
         <div class="text-wrapper-32">EUROPA LEAGUE</div>
         <img class="mario-klassen" src="img/stadium.png" />
       </div>
       <div class="element-live">
-        <div class="l">
-          <div class="text-wrapper-33">32’</div>
-          <div class="text-wrapper-34">UCL</div>
-          <div class="text-wrapper-35">FCB</div>
-          <div class="text-wrapper-36">MCT</div>
-          <div class="overlap-group-2">
-            <div class="text-wrapper-37">3</div>
-            <div class="text-wrapper-38">0</div>
+        <a href="live_fcb.html">
+          <div class="l">
+            <div class="text-wrapper-33">32’</div>
+            <div class="text-wrapper-34">UCL</div>
+            <div class="text-wrapper-35">FCB</div>
+            <div class="text-wrapper-36">MCT</div>
+            <div class="overlap-group-2">
+              <div class="text-wrapper-37">3</div>
+              <div class="text-wrapper-38">0</div>
+            </div>
+            <img class="image-16" src="img/FC_Barcelona_(crest).svg.png" />
+            <img class="image-17" src="img/Manchester_City_FC_badge.svg.png" />
           </div>
-          <img class="image-16" src="img/FC_Barcelona_(crest).svg.png" />
-          <img class="image-17" src="img/Manchester_City_FC_badge.svg.png" />
-        </div>
+        </a>
         <div class="overlap-wrapper">
           <div class="overlap-5">
-            <div class="group">
-              <div class="rectangle"></div>
-            </div>
-            <div class="text-wrapper-39">FT</div>
-            <div class="text-wrapper-40">2</div>
-            <div class="text-wrapper-41">3</div>
-            <div class="text-wrapper-42">FER</div>
-            <div class="text-wrapper-43">MTD</div>
-            <img class="manchester-logo-2" src="img/manchester-logo.png" />
-            <img class="fenerbahce-2" src="img/fenerbahce.png" />
-            <div class="text-wrapper-44">Europe League</div>
+            <a href="live_fenerbahce.html">
+              <div class="group">
+                <div class="rectangle"></div>
+              </div>
+              <div class="text-wrapper-39">FT</div>
+              <div class="text-wrapper-40">2</div>
+              <div class="text-wrapper-41">3</div>
+              <div class="text-wrapper-42">FER</div>
+              <div class="text-wrapper-43">MTD</div>
+              <img class="manchester-logo-2" src="img/manchester-logo.png" />
+              <img class="fenerbahce-2" src="img/fenerbahce.png" />
+              <div class="text-wrapper-44">Europe League</div>
           </div>
+          </a>
         </div>
         <img class="line-3" src="img/image.svg" />
         <div class="text-wrapper-45">Live</div>
@@ -347,77 +354,77 @@
   });
 
   document.addEventListener('click', function (event) {
-  const searchContainer = document.querySelector('.search-container');
-  const resultsContainer = document.getElementById('search-results');
+    const searchContainer = document.querySelector('.search-container');
+    const resultsContainer = document.getElementById('search-results');
 
-  // Check if the click occurred inside the search container
-  if (!searchContainer.contains(event.target)) {
-    resultsContainer.style.display = 'none'; // Hide the search results
-  }
-});
+    // Check if the click occurred inside the search container
+    if (!searchContainer.contains(event.target)) {
+      resultsContainer.style.display = 'none'; // Hide the search results
+    }
+  });
 
   function showResults(query) {
-  const resultsContainer = document.getElementById('search-results');
+    const resultsContainer = document.getElementById('search-results');
 
-  // If input is empty, hide the results
-  if (!query) {
-    resultsContainer.style.display = 'none';
-    return;
-  }
+    // If input is empty, hide the results
+    if (!query) {
+      resultsContainer.style.display = 'none';
+      return;
+    }
 
-  // Show results container
-  resultsContainer.style.display = 'block';
+    // Show results container
+    resultsContainer.style.display = 'block';
 
-  // Clear any previous results
-  resultsContainer.innerHTML = '';
+    // Clear any previous results
+    resultsContainer.innerHTML = '';
 
-  // Array of random words/phrases
-  const randomWordsBefore = [
-  "Breaking:", 
-  "Latest:", 
-  "Trending:", 
-  "Featured:", 
-  "Exclusive:", 
-  "Hot Topic:", 
-  "Don't Miss:", 
-  "Just In:", 
-  "Top Story:", 
-  "Must Read:", 
-  "Highlight:",
-  "Fresh News:"
-];
+    // Array of random words/phrases
+    const randomWordsBefore = [
+      "Breaking:",
+      "Latest:",
+      "Trending:",
+      "Featured:",
+      "Exclusive:",
+      "Hot Topic:",
+      "Don't Miss:",
+      "Just In:",
+      "Top Story:",
+      "Must Read:",
+      "Highlight:",
+      "Fresh News:"
+    ];
 
-const randomWordsAfter = [
-  "in Sports", 
-  "Today", 
-  "News Update", 
-  "Highlights", 
-  "Around the World", 
-  "for You", 
-  "2024 Edition", 
-  "Special Coverage", 
-  "Breaking Analysis", 
-  "Insider Look", 
-  "Latest Developments", 
-  "Exclusive Details"
-];
+    const randomWordsAfter = [
+      "in Sports",
+      "Today",
+      "News Update",
+      "Highlights",
+      "Around the World",
+      "for You",
+      "2024 Edition",
+      "Special Coverage",
+      "Breaking Analysis",
+      "Insider Look",
+      "Latest Developments",
+      "Exclusive Details"
+    ];
 
-  // Generate search result items
-  const numResults = 5; // Limit number of results
-  for (let i = 1; i <= numResults; i++) {
-    const resultItem = document.createElement('a');
-    resultItem.href = `detail-article.html`; // Navigation link
-    resultItem.classList.add('result-item');
+    // Generate search result items
+    const numResults = 5; // Limit number of results
+    for (let i = 1; i <= numResults; i++) {
+      const resultItem = document.createElement('a');
+      resultItem.href = `detail-article.html`; // Navigation link
+      resultItem.classList.add('result-item');
 
-    // Select random words
-    const randomBefore = randomWordsBefore[Math.floor(Math.random() * randomWordsBefore.length)];
-    const randomAfter = randomWordsAfter[Math.floor(Math.random() * randomWordsAfter.length)];
+      // Select random words
+      const randomBefore = randomWordsBefore[Math.floor(Math.random() * randomWordsBefore.length)];
+      const randomAfter = randomWordsAfter[Math.floor(Math.random() * randomWordsAfter.length)];
 
-    // Set dynamic content
-    resultItem.textContent = `${randomBefore} ${query} ${randomAfter}`;
-    resultsContainer.appendChild(resultItem);
-  }
-};
+      // Set dynamic content
+      resultItem.textContent = `${randomBefore} ${query} ${randomAfter}`;
+      resultsContainer.appendChild(resultItem);
+    }
+  };
 
 </script>
 

@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="css/contact-us-styleguide.css" />
-  <link rel="stylesheet" href="css/contact-us-style.css" />
+  <link rel="stylesheet" href="css/live_fenerbahce-styleguide.css" />
+  <link rel="stylesheet" href="css/live_fenerbahce-style.css" />
   <link rel="stylesheet" href="https://indestructibletype.com/fonts/Jost.css" type="text/css" charset="utf-8" />
 </head>
 
 <body>
-  <div class="contact-us">
+  <div class="live_fenerbahce">
     <div class="div">
       <footer class="footer">
         <div class="overlap-group">
@@ -52,44 +52,84 @@
       </footer>
       <div class="breadcrumb">
         <a href="home.html">Home</a> ›
-        <span>Contact Us</span>
+        <span>Live Fenerbahce - Man Utd</span>
       </div>
 
-      <main class="contact-main">
-        <h1>Contact Us</h1>
+      <main class="match-stats-main">
+        <h1>Fenerbahce vs. Manchester Utd - Match Stats</h1>
 
-        <section class="contact-info">
-          <h2>Get in Touch</h2>
-          <p>If you have any questions or need assistance, feel free to reach out to us using the form below or contact us directly through the following methods:</p>
+        <div class="team-logos">
+          <img src="img/fenerbahce.png" alt="Fenerbahce Logo" class="team-logo" />
+          <span class="vs-text">VS</span>
+          <img src="img/manchester-logo.png" alt="Manchester City Logo" class="team-logo" />
+        </div>
 
-          <ul>
-            <li><strong>Email:</strong> support@sportnews.com</li>
-            <li><strong>Phone:</strong> +1 (800) 123-4567</li>
-            <li><strong>Address:</strong> 123 Sport News Avenue, New York, NY 10001, USA</li>
-          </ul>
-        </section>
-
-        <section class="contact-form">
-          <h2>Send Us a Message</h2>
-          <form action="#" method="POST">
-            <div class="form-group">
-              <label for="name">Your Name:</label>
-              <input type="text" id="name" name="name" required placeholder="Enter your name" />
-            </div>
-
-            <div class="form-group">
-              <label for="email">Your Email:</label>
-              <input type="email" id="email" name="email" required placeholder="Enter your email" />
-            </div>
-
-            <div class="form-group">
-              <label for="message">Your Message:</label>
-              <textarea id="message" name="message" required placeholder="Enter your message" rows="4"></textarea>
-            </div>
-
-            <button type="submit" class="submit-button">Submit</button>
-          </form>
-        </section>
+        <table class="match-stats-table">
+          <thead>
+            <tr>
+              <th>Stat</th>
+              <th>Fenerbahce </th>
+              <th>Manchester Utd</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Possession %</td>
+              <td>51.7</td>
+              <td>48.3</td>
+            </tr>
+            <tr>
+              <td>Shots on target</td>
+              <td>5</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>Shots</td>
+              <td>10</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>Touches</td>
+              <td>654</td>
+              <td>638</td>
+            </tr>
+            <tr>
+              <td>Passes</td>
+              <td>485</td>
+              <td>459</td>
+            </tr>
+            <tr>
+              <td>Tackles</td>
+              <td>16</td>
+              <td>18</td>
+            </tr>
+            <tr>
+              <td>Clearances</td>
+              <td>11</td>
+              <td>25</td>
+            </tr>
+            <tr>
+              <td>Corners</td>
+              <td>5</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Offsides</td>
+              <td>1</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Yellow cards</td>
+              <td>2</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>Fouls conceded</td>
+              <td>12</td>
+              <td>14</td>
+            </tr>
+          </tbody>
+        </table>
       </main>
 
 
@@ -122,6 +162,7 @@
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 </body>
@@ -241,39 +282,6 @@ const randomWordsAfter = [
     resultsContainer.appendChild(resultItem);
   }
 };
-
-// Function to validate the form and display the success message
-function handleFormSubmit(event) {
-  // Prevent the form from submitting (page reload)
-  event.preventDefault();
-
-  // Get values from the form fields
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
-
-  // Check if all fields are filled
-  if (name && email && message) {
-    // If all fields are filled, clear the inputs and show a success message
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('message').value = '';
-
-    // Show success message
-    const successMessage = document.createElement('p');
-    successMessage.textContent = "Your message has been submitted!";
-    successMessage.style.color = "#5ed746"; // Success color
-    successMessage.style.fontSize = "18px";
-    successMessage.style.textAlign = "center";
-    document.querySelector('.contact-form').appendChild(successMessage);
-  } else {
-    // If any field is missing, alert the user
-    alert("Please fill out all fields.");
-  }
-}
-
-// Attach the event listener to the form submit event
-document.querySelector('.contact-form form').addEventListener('submit', handleFormSubmit);
 
 </script>
 

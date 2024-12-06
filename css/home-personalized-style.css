@@ -564,3 +564,27 @@
   color: #ffffff; /* White color on hover */
   text-decoration: underline; /* Add underline on hover */
 }
+
+
+.breadcrumb {
+  font-size: 16px;
+  color: white;
+  padding: 50px 2px; /* Adjust padding as needed */
+  margin-top: 20px; /* Space from the top header */
+  font-family: "Jost-Medium", Helvetica;
+}
+
+.breadcrumb a {
+  color: white; /* Light blue for links to stand out */
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.breadcrumb span {
+  color: #dbdbdb; /* Light grey for current page indicator */
+  font-weight: bold;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}

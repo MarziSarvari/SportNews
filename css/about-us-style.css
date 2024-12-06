@@ -517,3 +517,27 @@
 .about-us .search-results .result-item:active {
   background-color: #c2c2c2;  /* Highlight on click */
 }
+
+
+.about-us .main-info .breadcrumb {
+  font-size: 16px;
+  color: white;
+  padding: 0px 2px; /* Adjust padding as needed */
+  margin-top: 5px; /* Space from the top header */
+  font-family: "Jost-Medium", Helvetica;
+}
+
+.about-us .main-info .breadcrumb a {
+  color: white; /* Light blue for links to stand out */
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.about-us .main-info .breadcrumb span {
+  color: #dbdbdb; /* Light grey for current page indicator */
+  font-weight: bold;
+}
+
+.about-us .main-info .breadcrumb a:hover {
+  text-decoration: underline;
+}

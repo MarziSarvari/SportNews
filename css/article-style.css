@@ -568,6 +568,7 @@
     text-align: justify;
     letter-spacing: 0;
     line-height: normal;
+    padding-top: 30px;
   }
   
   .article-detail .line-2 {
@@ -705,11 +706,11 @@
     left: 13px;
   }
   
-  .article-detail .title-2 {
+  .article-detail .div .title-2 {
     position: absolute;
     width: 409px;
     height: 135px;
-    top: 45px;
+    top: 70px;
     left: 15px;
   }
   
@@ -1015,3 +1016,28 @@
     color: #ffffff;
     line-height: normal;
   }
+
+  
+  .article-detail .div .breadcrumb {
+  font-size: 16px;
+  padding: 2%;
+  color: white;
+  padding: 50px 2px; /* Adjust padding as needed */
+  margin-top: 20px; /* Space from the top header */
+  font-family: "Jost-Medium", Helvetica;
+}
+
+.article-detail .div .breadcrumb a {
+  color: white; /* Light blue for links to stand out */
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.article-detail .div .breadcrumb span {
+  color: #dbdbdb; /* Light grey for current page indicator */
+  font-weight: bold;
+}
+
+.article-detail .div .breadcrumb a:hover {
+  text-decoration: underline;
+}

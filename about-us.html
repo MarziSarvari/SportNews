@@ -77,11 +77,14 @@
           </div>
         </a>
       </div>
+
       <div class="main-info">
-        <img class="screenshot" src="img/screenshot-2024-11-09-130702-removebg-preview-1.png" />
-        <div class="cat-title-transfers">
-          <div class="text-wrapper-4">About us</div>
+        <div class="breadcrumb">
+          <a href="home.html">Home</a> ›
+          <span>About Us</span>
         </div>
+        <img class="screenshot" src="img/screenshot-2024-11-09-130702-removebg-preview-1.png" />
+
         <div class="stay-ahead-of-the">
           <p class="text-test"> Stay ahead of the game with Sport News, your go-to source for breaking sports news,
             in-depth analysis, and exclusive player interviews.
@@ -118,6 +121,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </body>
@@ -166,77 +170,77 @@
   });
 
   document.addEventListener('click', function (event) {
-  const searchContainer = document.querySelector('.search-container');
-  const resultsContainer = document.getElementById('search-results');
+    const searchContainer = document.querySelector('.search-container');
+    const resultsContainer = document.getElementById('search-results');
 
-  // Check if the click occurred inside the search container
-  if (!searchContainer.contains(event.target)) {
-    resultsContainer.style.display = 'none'; // Hide the search results
-  }
-});
+    // Check if the click occurred inside the search container
+    if (!searchContainer.contains(event.target)) {
+      resultsContainer.style.display = 'none'; // Hide the search results
+    }
+  });
 
   function showResults(query) {
-  const resultsContainer = document.getElementById('search-results');
+    const resultsContainer = document.getElementById('search-results');
 
-  // If input is empty, hide the results
-  if (!query) {
-    resultsContainer.style.display = 'none';
-    return;
-  }
+    // If input is empty, hide the results
+    if (!query) {
+      resultsContainer.style.display = 'none';
+      return;
+    }
 
-  // Show results container
-  resultsContainer.style.display = 'block';
+    // Show results container
+    resultsContainer.style.display = 'block';
 
-  // Clear any previous results
-  resultsContainer.innerHTML = '';
+    // Clear any previous results
+    resultsContainer.innerHTML = '';
 
-  // Array of random words/phrases
-  const randomWordsBefore = [
-  "Breaking:", 
-  "Latest:", 
-  "Trending:", 
-  "Featured:", 
-  "Exclusive:", 
-  "Hot Topic:", 
-  "Don't Miss:", 
-  "Just In:", 
-  "Top Story:", 
-  "Must Read:", 
-  "Highlight:",
-  "Fresh News:"
-];
+    // Array of random words/phrases
+    const randomWordsBefore = [
+      "Breaking:",
+      "Latest:",
+      "Trending:",
+      "Featured:",
+      "Exclusive:",
+      "Hot Topic:",
+      "Don't Miss:",
+      "Just In:",
+      "Top Story:",
+      "Must Read:",
+      "Highlight:",
+      "Fresh News:"
+    ];
 
-const randomWordsAfter = [
-  "in Sports", 
-  "Today", 
-  "News Update", 
-  "Highlights", 
-  "Around the World", 
-  "for You", 
-  "2024 Edition", 
-  "Special Coverage", 
-  "Breaking Analysis", 
-  "Insider Look", 
-  "Latest Developments", 
-  "Exclusive Details"
-];
+    const randomWordsAfter = [
+      "in Sports",
+      "Today",
+      "News Update",
+      "Highlights",
+      "Around the World",
+      "for You",
+      "2024 Edition",
+      "Special Coverage",
+      "Breaking Analysis",
+      "Insider Look",
+      "Latest Developments",
+      "Exclusive Details"
+    ];
 
-  // Generate search result items
-  const numResults = 5; // Limit number of results
-  for (let i = 1; i <= numResults; i++) {
-    const resultItem = document.createElement('a');
-    resultItem.href = `detail-article.html`; // Navigation link
-    resultItem.classList.add('result-item');
+    // Generate search result items
+    const numResults = 5; // Limit number of results
+    for (let i = 1; i <= numResults; i++) {
+      const resultItem = document.createElement('a');
+      resultItem.href = `detail-article.html`; // Navigation link
+      resultItem.classList.add('result-item');
 
-    // Select random words
-    const randomBefore = randomWordsBefore[Math.floor(Math.random() * randomWordsBefore.length)];
-    const randomAfter = randomWordsAfter[Math.floor(Math.random() * randomWordsAfter.length)];
+      // Select random words
+      const randomBefore = randomWordsBefore[Math.floor(Math.random() * randomWordsBefore.length)];
+      const randomAfter = randomWordsAfter[Math.floor(Math.random() * randomWordsAfter.length)];
 
-    // Set dynamic content
-    resultItem.textContent = `${randomBefore} ${query} ${randomAfter}`;
-    resultsContainer.appendChild(resultItem);
-  }
-};
+      // Set dynamic content
+      resultItem.textContent = `${randomBefore} ${query} ${randomAfter}`;
+      resultsContainer.appendChild(resultItem);
+    }
+  };
 
 </script>
 

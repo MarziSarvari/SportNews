@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="css/contact-us-styleguide.css" />
-  <link rel="stylesheet" href="css/contact-us-style.css" />
+  <link rel="stylesheet" href="css/profile-styleguide.css" />
+  <link rel="stylesheet" href="css/profile-style.css" />
   <link rel="stylesheet" href="https://indestructibletype.com/fonts/Jost.css" type="text/css" charset="utf-8" />
 </head>
 
 <body>
-  <div class="contact-us">
+  <div class="profile">
     <div class="div">
       <footer class="footer">
         <div class="overlap-group">
@@ -52,46 +52,46 @@
       </footer>
       <div class="breadcrumb">
         <a href="home.html">Home</a> ›
-        <span>Contact Us</span>
+        <span>Profile</span>
       </div>
+      <main class="profile-main">
+        <h1>Details</h1>
+        <section id="profile-details">
+          <div class="profile-item">
+            <label for="profile-name">Name:</label>
+            <p id="profile-name">Loading...</p>
+          </div>
 
-      <main class="contact-main">
-        <h1>Contact Us</h1>
+          <div class="profile-item">
+            <label for="profile-email">Email:</label>
+            <p id="profile-email">Loading...</p>
+          </div>
 
-        <section class="contact-info">
-          <h2>Get in Touch</h2>
-          <p>If you have any questions or need assistance, feel free to reach out to us using the form below or contact us directly through the following methods:</p>
+          <div class="profile-item">
+            <label for="profile-role">Role:</label>
+            <p id="profile-role">User</p>
+          </div>
 
-          <ul>
-            <li><strong>Email:</strong> support@sportnews.com</li>
-            <li><strong>Phone:</strong> +1 (800) 123-4567</li>
-            <li><strong>Address:</strong> 123 Sport News Avenue, New York, NY 10001, USA</li>
-          </ul>
+          <button id="edit-profile" class="submit-button">Edit Profile</button>
         </section>
-
-        <section class="contact-form">
-          <h2>Send Us a Message</h2>
-          <form action="#" method="POST">
+        <section id="edit-profile-form" style="display:none;">
+          <h2>Edit Profile</h2>
+          <form id="profile-form">
             <div class="form-group">
-              <label for="name">Your Name:</label>
-              <input type="text" id="name" name="name" required placeholder="Enter your name" />
+              <label for="edit-name">Full Name:</label>
+              <input type="text" id="edit-name" name="edit-name" placeholder="Enter your full name" />
             </div>
 
             <div class="form-group">
-              <label for="email">Your Email:</label>
-              <input type="email" id="email" name="email" required placeholder="Enter your email" />
+              <label for="edit-email">Email:</label>
+              <input type="email" id="edit-email" name="edit-email" placeholder="Enter your email" />
             </div>
 
-            <div class="form-group">
-              <label for="message">Your Message:</label>
-              <textarea id="message" name="message" required placeholder="Enter your message" rows="4"></textarea>
-            </div>
-
-            <button type="submit" class="submit-button">Submit</button>
+            <button type="submit" class="submit-button">Save Changes</button>
+            <button type="button" class="submit-button cancel-button" onclick="cancelEdit()">Cancel</button>
           </form>
         </section>
       </main>
-
 
       <div class="element-header">
         <a href="./home.html">
@@ -115,13 +115,14 @@
           </div>
         </div>
         <div class="user-menu">
-          <img class="user-icon" src="img/user2.png" alt="Profile" onclick="toggleUserMenu()" />
-          <div class="dropdown-user-menu">
-            <a href="login.html" id="signin-btn">Sign In</a>
-            <a href="register.html">Register</a>
+            <img class="user-icon" src="img/user2.png" alt="Profile" onclick="toggleUserMenu()" />
+            <div class="dropdown-user-menu">
+              <a href="profile.html" id="signin-btn">Profile</a>
+              <a id="logout-link">Log Out</a>
+            </div>
           </div>
-        </div>
       </div>
+      
     </div>
   </div>
 </body>
@@ -242,38 +243,77 @@ const randomWordsAfter = [
   }
 };
 
-// Function to validate the form and display the success message
-function handleFormSubmit(event) {
-  // Prevent the form from submitting (page reload)
-  event.preventDefault();
+// Fetch and display user details
+function loadProfile() {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
-  // Get values from the form fields
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
-
-  // Check if all fields are filled
-  if (name && email && message) {
-    // If all fields are filled, clear the inputs and show a success message
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('message').value = '';
-
-    // Show success message
-    const successMessage = document.createElement('p');
-    successMessage.textContent = "Your message has been submitted!";
-    successMessage.style.color = "#5ed746"; // Success color
-    successMessage.style.fontSize = "18px";
-    successMessage.style.textAlign = "center";
-    document.querySelector('.contact-form').appendChild(successMessage);
-  } else {
-    // If any field is missing, alert the user
-    alert("Please fill out all fields.");
+  if (!user) {
+    alert("No user logged in. Redirecting to login page.");
+    window.location.href = "login.html";
+    return;
   }
+
+  document.getElementById("profile-name").textContent = user.name;
+  document.getElementById("profile-email").textContent = user.email;
 }
 
-// Attach the event listener to the form submit event
-document.querySelector('.contact-form form').addEventListener('submit', handleFormSubmit);
+// Show the edit form
+document.getElementById("edit-profile").addEventListener("click", function () {
+  document.getElementById("profile-details").style.display = "none";
+  document.getElementById("edit-profile-form").style.display = "block";
+
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  document.getElementById("edit-name").value = user.name;
+  document.getElementById("edit-email").value = user.email;
+});
+
+// Save changes to profile
+document.getElementById("profile-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const updatedName = document.getElementById("edit-name").value.trim();
+  const updatedEmail = document.getElementById("edit-email").value.trim();
+
+  if (!updatedName || !updatedEmail) {
+    alert("All fields are required.");
+    return;
+  }
+
+  const updatedUser = {
+    name: updatedName,
+    email: updatedEmail,
+    password: JSON.parse(localStorage.getItem("loggedInUser")).password, // Keep the same password
+  };
+
+  localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
+
+  alert("Profile updated successfully!");
+  window.location.reload();
+});
+
+// Cancel editing
+function cancelEdit() {
+  document.getElementById("edit-profile-form").style.display = "none";
+  document.getElementById("profile-details").style.display = "block";
+}
+
+// Initialize the page
+loadProfile();
+
+// Logout function
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  alert("You have been logged out.");
+  window.location.href = "login.html"; // Redirect to login page
+}
+
+
+// Add logout functionality to logout link
+document.getElementById("logout-link").addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent default anchor behavior
+  logout();
+});
+
 
 </script>
 

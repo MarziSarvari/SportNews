@@ -249,7 +249,7 @@
   position: absolute;
   width: 205px;
   height: 22px;
-  top: 100px;
+  top: 120px;
   left: 106px;
 }
 
@@ -688,4 +688,28 @@
 /* Show search results when typing */
 .latest-news-category .search-results .result-item:active {
   background-color: #c2c2c2;  /* Highlight on click */
+}
+
+
+.breadcrumb {
+  font-size: 16px;
+  color: white;
+  padding: 50px 2px; /* Adjust padding as needed */
+  margin-top: 20px; /* Space from the top header */
+  font-family: "Jost-Medium", Helvetica;
+}
+
+.breadcrumb a {
+  color: white; /* Light blue for links to stand out */
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.breadcrumb span {
+  color: #dbdbdb; /* Light grey for current page indicator */
+  font-weight: bold;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
 }
