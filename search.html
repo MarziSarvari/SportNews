@@ -3,13 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="css/register-styleguide.css" />
-  <link rel="stylesheet" href="css/register-style.css" />
+  <link rel="stylesheet" href="css/search-styleguide.css" />
+  <link rel="stylesheet" href="css/search-style.css" />
   <link rel="stylesheet" href="https://indestructibletype.com/fonts/Jost.css" type="text/css" charset="utf-8" />
 </head>
 
 <body>
-  <div class="register">
+  <div class="search-file">
     <div class="div">
       <footer class="footer">
         <div class="overlap-group">
@@ -52,38 +52,81 @@
       </footer>
       <div class="breadcrumb">
         <a href="home.html">Home</a> ›
-        <span>Register</span>
+        <span>Search Result</span>
       </div>
 
-      <main class="register-main">
-        <h1>Register</h1>
+      <main class="search-results-main">
+        <h1>Search Results for "Manchester"</h1>
 
-        <section class="register-form">
-          <form id="register-form">
-            <div class="form-group">
-              <label for="name">Full Name:</label>
-              <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+        <!-- Row 1: Fenerbahce vs Manchester United -->
+        <div class="search-result-row">
+          <a href="live_fenerbahce.html" class="search-result">
+            <div class="team-match">
+              <div class="team-info">
+                <div class="team-names">
+                  <span class="team-name">Fenerbahçe</span> vs
+                  <span class="team-name">Manchester United</span>
+                </div>
+                <div class="match-details">
+                  <div class="score">
+                    <span class="score-value">2</span> - <span class="score-value">3</span>
+                  </div>
+                  <div class="competition">Europe League</div>
+                </div>
+                <div class="team-logos">
+                  <img class="team-logo" src="img/fenerbahce.png" alt="Fenerbahce Logo">
+                  <img class="team-logo" src="img/manchester-logo.png" alt="Manchester United Logo">
+                </div>
+              </div>
             </div>
+          </a>
+        </div>
 
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required placeholder="Enter your email" />
+        <!-- Row 2: Barcelona vs Manchester City -->
+        <div class="search-result-row">
+          <a href="live_fcb.html" class="search-result">
+            <div class="team-match">
+              <div class="team-info">
+                <div class="team-names">
+                  <span class="team-name">FC Barcelona</span> vs
+                  <span class="team-name">Manchester City</span>
+                </div>
+                <div class="match-details">
+                  <div class="score">
+                    <span class="score-value">3</span> - <span class="score-value">0</span>
+                  </div>
+                  <div class="competition">UCL</div>
+                </div>
+                <div class="team-logos">
+                  <img class="team-logo" src="img/FC_Barcelona_(crest).svg.png" alt="FCB Logo">
+                  <img class="team-logo" src="img/Manchester_City_FC_badge.svg.png" alt="Manchester City Logo">
+                </div>
+              </div>
             </div>
+          </a>
+        </div>
 
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password" required placeholder="Enter your password" />
+        <!-- Row 3: Article related to Manchester City -->
+        <div class="search-result-row">
+          <a href="detail-article.html" class="search-result">
+            <div class="article-info">
+              <h3 class="article-title">Manchester City's European Journey: The Road to Glory</h3>
+              <p class="article-snippet">Explore Manchester City's impressive journey in the European leagues and their
+                path to success.</p>
             </div>
+          </a>
+        </div>
 
-            <div class="form-group">
-              <label for="confirm-password">Confirm Password:</label>
-              <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password" />
+        <!-- Row 4: Article related to Manchester United -->
+        <div class="search-result-row">
+          <a href="detail-article.html" class="search-result">
+            <div class="article-info">
+              <h3 class="article-title">Manchester United's Tactics: Mastering the Beautiful Game</h3>
+              <p class="article-snippet">A breakdown of Manchester United's strategic approach and how they dominate the
+                game with their tactics.</p>
             </div>
-
-            <button type="submit" class="submit-button">Register</button>
-          </form>
-          <section id="register-message" class="message-section" style="display:none;"></section>
-        </section>
+          </a>
+        </div>
       </main>
 
       <div class="element-header">
@@ -115,6 +158,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </body>
@@ -163,16 +207,16 @@
   });
 
   document.addEventListener('click', function (event) {
-  const searchContainer = document.querySelector('.search-container');
-  const resultsContainer = document.getElementById('search-results');
+    const searchContainer = document.querySelector('.search-container');
+    const resultsContainer = document.getElementById('search-results');
 
-  // Check if the click occurred inside the search container
-  if (!searchContainer.contains(event.target)) {
-    resultsContainer.style.display = 'none'; // Hide the search results
-  }
-});
+    // Check if the click occurred inside the search container
+    if (!searchContainer.contains(event.target)) {
+      resultsContainer.style.display = 'none'; // Hide the search results
+    }
+  });
 
-function showResults(query) {
+  function showResults(query) {
       const resultsContainer = document.getElementById('search-results');
 
       // If input is empty, hide the results
@@ -234,86 +278,45 @@ function showResults(query) {
       }
     });
 
-// Handle form submission for registration
-document.getElementById("register-form").addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevent the default form submission behavior
+  // Ensure the Buy Subscription link is only shown when a user is logged in
+  document.addEventListener("DOMContentLoaded", () => {
+    const subscriptionLink = document.querySelector(".dropdown-menu a[href='buy-subscription.html']");
+    const loggedInUser = localStorage.getItem("loggedInUser");
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirm-password").value;
+    if (loggedInUser) {
+      // User is logged in, show the Buy Subscription link
+      subscriptionLink.style.display = "block";
+    } else {
+      // User is not logged in, hide the Buy Subscription link
+      subscriptionLink.style.display = "none";
+    }
+  });
 
-  const registerMessage = document.getElementById("register-message");
+  document.addEventListener("DOMContentLoaded", () => {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    const userMenu = document.querySelector(".dropdown-user-menu");
 
-  // Check if passwords match
-  if (password !== confirmPassword) {
-    registerMessage.textContent = "Passwords do not match. Please try again.";
-    registerMessage.style.color = "#ff4c4c"; // Error color
-    registerMessage.style.display = "block";
-    return;
-  }
-
-  // Create the user object
-  const newUser = {
-    name: name,
-    email: email,
-    password: password,
-    subscriptionType: "None", // Set the default subscription type to 'None'
-  };
-
-  // Save the user to localStorage
-  localStorage.setItem("loggedInUser", JSON.stringify(newUser));
-
-  // Display success message
-  registerMessage.textContent = "Registration successful! Redirecting to home page...";
-  registerMessage.style.color = "#5ed746"; // Success color
-  registerMessage.style.display = "block";
-
-  // Redirect to home page after a delay
-  setTimeout(() => {
-    window.location.href = "home.html"; // Redirect to home page
-  }, 2000);
-});
-
-
-// Ensure the Buy Subscription link is only shown when a user is logged in
-document.addEventListener("DOMContentLoaded", () => {
-  const subscriptionLink = document.querySelector(".dropdown-menu a[href='buy-subscription.html']");
-  const loggedInUser = localStorage.getItem("loggedInUser");
-
-  if (loggedInUser) {
-    // User is logged in, show the Buy Subscription link
-    subscriptionLink.style.display = "block";
-  } else {
-    // User is not logged in, hide the Buy Subscription link
-    subscriptionLink.style.display = "none";
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const loggedInUser = localStorage.getItem("loggedInUser");
-  const userMenu = document.querySelector(".dropdown-user-menu");
-
-  if (loggedInUser) {
-    // User is logged in, show Profile and Log Out options
-    userMenu.innerHTML = `
+    if (loggedInUser) {
+      // User is logged in, show Profile and Log Out options
+      userMenu.innerHTML = `
       <a href="profile.html" id="profile-link">Profile</a>
       <a id="logout-link">Log Out</a>
     `;
 
-    // Handle Log Out action
-    document.getElementById("logout-link").addEventListener("click", () => {
-      localStorage.removeItem("loggedInUser"); // Clear user data
-      window.location.href = "home.html"; // Redirect to home page
-    });
-  } else {
-    // User is not logged in, show Sign In and Register options
-    userMenu.innerHTML = `
+      // Handle Log Out action
+      document.getElementById("logout-link").addEventListener("click", () => {
+        localStorage.removeItem("loggedInUser"); // Clear user data
+        window.location.href = "home.html"; // Redirect to home page
+      });
+    } else {
+      // User is not logged in, show Sign In and Register options
+      userMenu.innerHTML = `
       <a href="login.html" id="signin-btn">Sign In</a>
       <a href="register.html">Register</a>
     `;
-  }
-});
+    }
+  });
+
 </script>
 
 </html>

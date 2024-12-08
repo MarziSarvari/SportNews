@@ -108,7 +108,7 @@
         </div>
         <div class="search-container">
           <img class="magnifying-glass" src="img/search.png" alt="Search" />
-          <input type="text" class="search-box" placeholder="Search..." onkeyup="showResults(this.value)" />
+          <input type="text" class="search-box" placeholder="Search..." onkeyup="showResults(this.value)" id="search-input"/>
           <div id="search-results" class="search-results">
             <!-- Dynamic search results will appear here -->
           </div>
@@ -180,67 +180,66 @@
   });
 
   function showResults(query) {
-    const resultsContainer = document.getElementById('search-results');
+      const resultsContainer = document.getElementById('search-results');
 
-    // If input is empty, hide the results
-    if (!query) {
-      resultsContainer.style.display = 'none';
-      return;
+      // If input is empty, hide the results
+      if (!query) {
+        resultsContainer.style.display = 'none';
+        return;
+      }
+
+      // Show results container
+      resultsContainer.style.display = 'block';
+
+      // Clear any previous results
+      resultsContainer.innerHTML = '';
+
+      // Array of random words/phrases
+      const randomWordsBefore = [
+        "Breaking:", "Latest:", "Trending:", "Featured:", "Exclusive:", 
+        "Hot Topic:", "Don't Miss:", "Just In:", "Top Story:", "Must Read:", 
+        "Highlight:", "Fresh News:"
+      ];
+
+      const randomWordsAfter = [
+        "in Sports", "Today", "News Update", "Highlights", "Around the World", 
+        "for You", "2024 Edition", "Special Coverage", "Breaking Analysis", 
+        "Insider Look", "Latest Developments", "Exclusive Details"
+      ];
+
+      // Generate search result items
+      const numResults = 5; // Limit number of results
+      for (let i = 1; i <= numResults; i++) {
+        const resultItem = document.createElement('a');
+        resultItem.href = `detail-article.html`; // Navigation link
+        resultItem.classList.add('result-item');
+
+        // Select random words
+        const randomBefore = randomWordsBefore[Math.floor(Math.random() * randomWordsBefore.length)];
+        const randomAfter = randomWordsAfter[Math.floor(Math.random() * randomWordsAfter.length)];
+
+        // Set dynamic content
+        resultItem.textContent = `${randomBefore} ${query} ${randomAfter}`;
+        resultsContainer.appendChild(resultItem);
+      }
     }
 
-    // Show results container
-    resultsContainer.style.display = 'block';
+    // Add event listener to detect 'Enter' key press
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('keydown', function(event) {
+      if (event.keyCode == 13) {
+        const query1 = searchInput.value; // Get the query in lowercase
 
-    // Clear any previous results
-    resultsContainer.innerHTML = '';
-
-    // Array of random words/phrases
-    const randomWordsBefore = [
-      "Breaking:",
-      "Latest:",
-      "Trending:",
-      "Featured:",
-      "Exclusive:",
-      "Hot Topic:",
-      "Don't Miss:",
-      "Just In:",
-      "Top Story:",
-      "Must Read:",
-      "Highlight:",
-      "Fresh News:"
-    ];
-
-    const randomWordsAfter = [
-      "in Sports",
-      "Today",
-      "News Update",
-      "Highlights",
-      "Around the World",
-      "for You",
-      "2024 Edition",
-      "Special Coverage",
-      "Breaking Analysis",
-      "Insider Look",
-      "Latest Developments",
-      "Exclusive Details"
-    ];
-
-    // Generate search result items
-    const numResults = 5; // Limit number of results
-    for (let i = 1; i <= numResults; i++) {
-      const resultItem = document.createElement('a');
-      resultItem.href = `detail-article.html`; // Navigation link
-      resultItem.classList.add('result-item');
-
-      // Select random words
-      const randomBefore = randomWordsBefore[Math.floor(Math.random() * randomWordsBefore.length)];
-      const randomAfter = randomWordsAfter[Math.floor(Math.random() * randomWordsAfter.length)];
-
-      // Set dynamic content
-      resultItem.textContent = `${randomBefore} ${query} ${randomAfter}`;
-      resultsContainer.appendChild(resultItem);
-    }
-  };
+        // Check if query is 'manchester'
+        if (query1.toLowerCase() === 'manchester') {
+          // Redirect to search.html
+          window.location.href = 'search.html';
+        } else {
+          // Otherwise, show results
+          showResults(query1);
+        }
+      }
+    });
 
   
 // Ensure the Buy Subscription link is only shown when a user is logged in
