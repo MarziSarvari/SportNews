@@ -254,11 +254,23 @@ document.getElementById("register-form").addEventListener("submit", function (ev
     return;
   }
 
-  // Display success message and redirect to home page
+  // Create the user object
+  const newUser = {
+    name: name,
+    email: email,
+    password: password,
+    subscriptionType: "None", // Set the default subscription type to 'None'
+  };
+
+  // Save the user to localStorage
+  localStorage.setItem("loggedInUser", JSON.stringify(newUser));
+
+  // Display success message
   registerMessage.textContent = "Registration successful! Redirecting to home page...";
   registerMessage.style.color = "#5ed746"; // Success color
   registerMessage.style.display = "block";
 
+  // Redirect to home page after a delay
   setTimeout(() => {
     window.location.href = "home.html"; // Redirect to home page
   }, 2000);
