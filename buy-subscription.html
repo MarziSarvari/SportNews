@@ -94,12 +94,12 @@
 
             <div class="form-group">
               <label for="name">Your Name:</label>
-              <input type="text" id="name" name="name" required placeholder="Enter your name" />
+              <input type="text" id="name" name="name" readonly placeholder="Loading..." />
             </div>
-
+            
             <div class="form-group">
               <label for="email">Your Email:</label>
-              <input type="email" id="email" name="email" required placeholder="Enter your email" />
+              <input type="email" id="email" name="email" readonly placeholder="Loading..." />
             </div>
 
             <div class="form-group">
@@ -118,6 +118,11 @@
             </div>
 
             <button type="submit" class="submit-button">Submit Payment</button>
+
+            <section id="message" class="message-section" style="display:none;">
+              <p>Your subscription has been purchased!</p>
+            </section>
+
           </form>
         </section>
 
@@ -133,7 +138,7 @@
         <div class="menu">
           <img src="img/Menu.png" alt="Menu Icon" onclick="toggleMenu()" />
           <div class="dropdown-menu">
-            <a href="buy-subscription.html">Buy Subscription</a>
+            <a href="buy-subscription.html" style="display: none;">Buy Subscription</a>
             <a href="latest-news-category.html">Latest News</a>
             <a href="./about-us.html">About Us</a>
             <a href="contact-us.html">Contact Us</a>
@@ -281,28 +286,114 @@ function selectPlan(plan) {
   document.getElementById('plan').value = plan;
 }
 
-// Event listener for form submission
-document.getElementById('subscription-form').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent form submission (page reload)
-  
-  // Get form input values
-  const plan = document.getElementById('plan').value;
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const cardNumber = document.getElementById('card-number').value;
-  const expiryDate = document.getElementById('expiry-date').value;
-  const cvv = document.getElementById('cvv').value;
+//submit button
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
-  // Check if all required fields are filled
-  if (plan && name && email && cardNumber && expiryDate && cvv) {
-    // If all fields are filled, show success message and reset the form
-    document.getElementById('message').style.display = 'block'; // Show success message
-    document.getElementById('subscription-form').reset(); // Reset form fields
+  if (!user) {
+    alert("No user logged in. Redirecting to login page.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  // Populate fields
+  document.getElementById("name").value = user.name;
+  document.getElementById("name").setAttribute("readonly", "readonly");
+
+  document.getElementById("email").value = user.email;
+  document.getElementById("email").setAttribute("readonly", "readonly");
+
+  // Handle plan selection
+  window.selectPlan = function (plan) {
+    document.getElementById("plan").value = plan; // Update the selected plan in the form
+  };
+
+  // Handle form submission
+  document.getElementById("subscription-form").addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent form reload
+
+    const selectedPlan = document.getElementById("plan").value;
+    if (!selectedPlan) {
+      alert("Please select a subscription plan before submitting.");
+      return;
+    }
+
+    // Update user data with selected plan
+    const updatedUser = {
+      ...user,
+      subscriptionType: selectedPlan,
+    };
+
+    // Save updated user data to localStorage
+    localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
+
+    // Show confirmation message
+    const messageSection = document.getElementById("message");
+    messageSection.style.display = "block";
+    messageSection.innerHTML = `<p>Thank you, ${user.name}! Your subscription to the ${selectedPlan} plan has been activated.</p>`;
+
+    // Redirect to profile page after a delay
+    setTimeout(() => {
+      window.location.href = "profile.html"; // Adjust the path if needed
+    }, 3000); // 3-second delay
+  });
+});
+
+
+
+
+// Ensure the Buy Subscription link is only shown when a user is logged in
+document.addEventListener("DOMContentLoaded", () => {
+  const subscriptionLink = document.querySelector(".dropdown-menu a[href='buy-subscription.html']");
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    // User is logged in, show the Buy Subscription link
+    subscriptionLink.style.display = "block";
   } else {
-    // If any field is missing, show an alert
-    alert("Please fill out all fields.");
+    // User is not logged in, hide the Buy Subscription link
+    subscriptionLink.style.display = "none";
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  const userMenu = document.querySelector(".dropdown-user-menu");
+
+  if (loggedInUser) {
+    // User is logged in, show Profile and Log Out options
+    userMenu.innerHTML = `
+      <a href="profile.html" id="profile-link">Profile</a>
+      <a id="logout-link">Log Out</a>
+    `;
+
+    // Handle Log Out action
+    document.getElementById("logout-link").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser"); // Clear user data
+      window.location.href = "home.html"; // Redirect to home page
+    });
+  } else {
+    window.location.href = "home.html";
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (!user) {
+    alert("No user logged in. Redirecting to login page.");
+    window.location.href = "home.html";
+    return;
+  }
+
+  // Populate fields
+  document.getElementById("name").value = user.name;
+  document.getElementById("name").setAttribute("readonly", "readonly");
+
+  document.getElementById("email").value = user.email;
+  document.getElementById("email").setAttribute("readonly", "readonly");
+});
+
 
 </script>
 

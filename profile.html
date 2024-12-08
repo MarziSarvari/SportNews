@@ -68,6 +68,11 @@
           </div>
 
           <div class="profile-item">
+            <label for="profile-subscription">Subscription Type:</label>
+            <p id="profile-subscription">Loading...</p>
+          </div>          
+
+          <div class="profile-item">
             <label for="profile-role">Role:</label>
             <p id="profile-role">User</p>
           </div>
@@ -87,6 +92,12 @@
               <input type="email" id="edit-email" name="edit-email" placeholder="Enter your email" />
             </div>
 
+            <div class="form-group">
+              <label for="edit-subscription">Subscription Type:</label>
+              <input type="text" id="edit-subscription" name="edit-subscription" readonly />
+            </div>
+            
+
             <button type="submit" class="submit-button">Save Changes</button>
             <button type="button" class="submit-button cancel-button" onclick="cancelEdit()">Cancel</button>
           </form>
@@ -100,7 +111,7 @@
         <div class="menu">
           <img src="img/Menu.png" alt="Menu Icon" onclick="toggleMenu()" />
           <div class="dropdown-menu">
-            <a href="buy-subscription.html">Buy Subscription</a>
+            <a href="buy-subscription.html" style="display: none;">Buy Subscription</a>
             <a href="latest-news-category.html">Latest News</a>
             <a href="./about-us.html">About Us</a>
             <a href="contact-us.html">Contact Us</a>
@@ -253,8 +264,10 @@ function loadProfile() {
     return;
   }
 
+  // Display user details
   document.getElementById("profile-name").textContent = user.name;
   document.getElementById("profile-email").textContent = user.email;
+  document.getElementById("profile-subscription").textContent = user.subscriptionType || "None";
 }
 
 // Show the edit form
@@ -265,6 +278,7 @@ document.getElementById("edit-profile").addEventListener("click", function () {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
   document.getElementById("edit-name").value = user.name;
   document.getElementById("edit-email").value = user.email;
+  document.getElementById("edit-subscription").value = user.subscriptionType || "None"; // Read-only
 });
 
 // Save changes to profile
@@ -280,9 +294,9 @@ document.getElementById("profile-form").addEventListener("submit", function (eve
   }
 
   const updatedUser = {
+    ...JSON.parse(localStorage.getItem("loggedInUser")), // Retain other fields like subscriptionType
     name: updatedName,
     email: updatedEmail,
-    password: JSON.parse(localStorage.getItem("loggedInUser")).password, // Keep the same password
   };
 
   localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
@@ -300,18 +314,46 @@ function cancelEdit() {
 // Initialize the page
 loadProfile();
 
-// Logout function
-function logout() {
-  localStorage.removeItem("loggedInUser");
-  alert("You have been logged out.");
-  window.location.href = "login.html"; // Redirect to login page
-}
 
 
-// Add logout functionality to logout link
-document.getElementById("logout-link").addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent default anchor behavior
-  logout();
+
+// Ensure the Buy Subscription link is only shown when a user is logged in
+document.addEventListener("DOMContentLoaded", () => {
+  const subscriptionLink = document.querySelector(".dropdown-menu a[href='buy-subscription.html']");
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    // User is logged in, show the Buy Subscription link
+    subscriptionLink.style.display = "block";
+  } else {
+    // User is not logged in, hide the Buy Subscription link
+    subscriptionLink.style.display = "none";
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  const userMenu = document.querySelector(".dropdown-user-menu");
+
+  if (loggedInUser) {
+    // User is logged in, show Profile and Log Out options
+    userMenu.innerHTML = `
+      <a href="profile.html" id="profile-link">Profile</a>
+      <a id="logout-link">Log Out</a>
+    `;
+
+    // Handle Log Out action
+    document.getElementById("logout-link").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser"); // Clear user data
+      window.location.href = "home.html"; // Redirect to home page
+    });
+  } else {
+    // User is not logged in, show Sign In and Register options
+    userMenu.innerHTML = `
+      <a href="login.html" id="signin-btn">Sign In</a>
+      <a href="register.html">Register</a>
+    `;
+  }
 });
 
 

@@ -93,7 +93,7 @@
         <div class="menu">
           <img src="img/Menu.png" alt="Menu Icon" onclick="toggleMenu()" />
           <div class="dropdown-menu">
-            <a href="buy-subscription.html">Buy Subscription</a>
+            <a href="buy-subscription.html" style="display: none;">Buy Subscription</a>
             <a href="latest-news-category.html">Latest News</a>
             <a href="./about-us.html">About Us</a>
             <a href="contact-us.html">Contact Us</a>
@@ -264,6 +264,45 @@ document.getElementById("register-form").addEventListener("submit", function (ev
   }, 2000);
 });
 
+
+// Ensure the Buy Subscription link is only shown when a user is logged in
+document.addEventListener("DOMContentLoaded", () => {
+  const subscriptionLink = document.querySelector(".dropdown-menu a[href='buy-subscription.html']");
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    // User is logged in, show the Buy Subscription link
+    subscriptionLink.style.display = "block";
+  } else {
+    // User is not logged in, hide the Buy Subscription link
+    subscriptionLink.style.display = "none";
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  const userMenu = document.querySelector(".dropdown-user-menu");
+
+  if (loggedInUser) {
+    // User is logged in, show Profile and Log Out options
+    userMenu.innerHTML = `
+      <a href="profile.html" id="profile-link">Profile</a>
+      <a id="logout-link">Log Out</a>
+    `;
+
+    // Handle Log Out action
+    document.getElementById("logout-link").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser"); // Clear user data
+      window.location.href = "home.html"; // Redirect to home page
+    });
+  } else {
+    // User is not logged in, show Sign In and Register options
+    userMenu.innerHTML = `
+      <a href="login.html" id="signin-btn">Sign In</a>
+      <a href="register.html">Register</a>
+    `;
+  }
+});
 </script>
 
 </html>

@@ -83,7 +83,7 @@
         <div class="menu">
           <img src="img/Menu.png" alt="Menu Icon" onclick="toggleMenu()" />
           <div class="dropdown-menu">
-            <a href="buy-subscription.html">Buy Subscription</a>
+            <a href="buy-subscription.html" style="display: none;">Buy Subscription</a>
             <a href="latest-news-category.html">Latest News</a>
             <a href="./about-us.html">About Us</a>
             <a href="contact-us.html">Contact Us</a>
@@ -232,16 +232,19 @@ const users = [
     name: "Jake Thompson",
     email: "jake.thompson@example.com",
     password: "soccer123",
+    subscriptionType: "Premium",
   },
   {
     name: "Lisa Martinez",
     email: "lisa.martinez@example.com",
     password: "sportsblog321",
+    subscriptionType: "Standard",
   },
   {
     name: "Ethan Kim",
     email: "ethan.kim@example.com",
     password: "basketball456",
+    subscriptionType: "None",
   },
 ];
 
@@ -275,6 +278,43 @@ document.getElementById("login-form").addEventListener("submit", function (event
     loginMessage.textContent = "Invalid email or password. Please try again.";
     loginMessage.style.color = "#ff4c4c"; // Error color
     loginMessage.style.display = "block";
+  }
+});
+
+
+// Ensure the Buy Subscription link is only shown when a user is logged in
+document.addEventListener("DOMContentLoaded", () => {
+  const subscriptionLink = document.querySelector(".dropdown-menu a[href='buy-subscription.html']");
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    // User is logged in, show the Buy Subscription link
+    subscriptionLink.style.display = "block";
+  } else {
+    // User is not logged in, hide the Buy Subscription link
+    subscriptionLink.style.display = "none";
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  const userMenu = document.querySelector(".dropdown-user-menu");
+
+  if (loggedInUser) {
+    // User is logged in, show Profile and Log Out options
+    window.location.href = "home-personalized.html";;
+
+    // Handle Log Out action
+    document.getElementById("logout-link").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser"); // Clear user data
+      window.location.href = "home.html"; // Redirect to home page
+    });
+  } else {
+    // User is not logged in, show Sign In and Register options
+    userMenu.innerHTML = `
+      <a href="login.html" id="signin-btn">Sign In</a>
+      <a href="register.html">Register</a>
+    `;
   }
 });
 
