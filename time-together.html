@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="css/time-together-styleguide.css" />
+  <link rel="stylesheet" href="css/time-together-style.css" />
+  <link rel="stylesheet" href="https://indestructibletype.com/fonts/Jost.css" type="text/css" charset="utf-8" />
+</head>
+
+<body>
+  <div class="time-together">
+    <div class="div">
+      <footer class="footer">
+        <div class="overlap-group">
+          <div class="rectangle"></div>
+          <img class="sport-news-high" src="img/logo.png" />
+          <p class="text-wrapper">Copyright © 2024 Sport News. All rights reserved.</p>
+          <p class="text-wrapper-50"> Published by CZU students.</p>
+        </div>
+        <div class="social-networkes">
+          <a href="https://twitter.com" target="_blank">
+            <img class="twitter" src="img/twitter-1.png" alt="Twitter" />
+          </a>
+          <a href="https://instagram.com" target="_blank">
+            <img class="instagram-logo" src="img/instagram-logo-1.png" alt="Instagram" />
+          </a>
+          <a href="https://facebook.com" target="_blank">
+            <img class="facebook" src="img/facebook-1.png" alt="Facebook" />
+          </a>
+          <a href="https://tiktok.com" target="_blank">
+            <img class="tik-tok" src="img/tik-tok-1.png" alt="TikTok" />
+          </a>
+          <a href="https://youtube.com" target="_blank">
+            <img class="youtube" src="img/youtube-1.png" alt="YouTube" />
+          </a>
+          <a href="https://whatsapp.com" target="_blank">
+            <img class="whatsapp" src="img/whatsapp-1.png" alt="WhatsApp" />
+          </a>
+          <a href="https://telegram.org" target="_blank">
+            <img class="telegram" src="img/telegram-1.png" alt="Telegram" />
+          </a>
+        </div>
+        <p class="terms-conditions">
+          <a href="about-us.html" target="_blank">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="terms-condition.html" target="_blank">Terms of Services</a>
+          <br /><br />
+          Authors:<br />
+          Mohsen Amirian | Marziye Sarvarizade | Ognjen Ostojic
+        </p>
+        <img class="line" src="img/line-1.svg" />
+      </footer>
+      <div class="breadcrumb">
+        <a href="home.html">Home </a> ›
+        <a href="women.html">Women </a> ›
+
+        <span>Time Together</span>
+      </div>
+
+      <main class="time-together-main">
+        <h1>TimeTogether: the movement of women and girls claiming back their right to sport</h1>
+        <p class="byline">By Marziye Sarvarizade, Women Specialist</p>
+
+        <p class="content-text">
+          We asked 19-year-old Women in Sport Youth Ambassador Lauren about what she enjoys about spending 
+          <strong>#TimeTogether</strong> with her mum…
+        </p>
+
+        <p class="content-text">
+          We have teamed up with sports providers around the UK to host women’s and girls’ sessions throughout 
+          October for you and your female relatives to try.
+        </p>
+
+        <img class="news-image" src="img/gymnast.png" alt="TimeTogether activities image">
+
+        <p class="content-text">
+          Whether you’re already active or just getting back into sport, there are lots of opportunities for you 
+          to try out, from rugby, to squash, from climbing, to basketball.
+        </p>
+
+        <p class="content-text">
+          Check out activities taking place near you in October and discover new sports to try with your daughter 
+          or a teenage girl in your life.
+        </p>
+
+        <img class="news-image" src="img/simon.png" alt="Activities for TimeTogether participants">
+      </main>
+      <div class="element-header">
+        <a href="./home.html">
+          <img class="sport-news-high" src="img/logo.png" alt="Logo" />
+        </a>
+        <div class="menu">
+          <img src="img/Menu.png" alt="Menu Icon" onclick="toggleMenu()" />
+          <div class="dropdown-menu">
+            <a href="buy-subscription.html" style="display: none;">Buy Subscription</a>
+            <a href="latest-news-category.html">Latest News</a>
+            <a href="./about-us.html">About Us</a>
+            <a href="contact-us.html">Contact Us</a>
+            <a href="terms-condition.html">Terms of our Services</a>
+          </div>          
+        </div>
+        <div class="search-container">
+          <img class="magnifying-glass" src="img/search.png" alt="Search" />
+          <input type="text" class="search-box" placeholder="Search..." onkeyup="showResults(this.value)" id="search-input"/>
+          <div id="search-results" class="search-results">
+            <!-- Dynamic search results will appear here -->
+          </div>
+        </div>
+        <div class="user-menu">
+          <img class="user-icon" src="img/user2.png" alt="Profile" onclick="toggleUserMenu()" />
+          <div class="dropdown-user-menu">
+            <a href="login.html" id="signin-btn">Sign In</a>
+            <a href="register.html">Register</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</body>
+<script>
+  function toggleMenu() {
+    const menu = document.querySelector('.menu');
+    menu.classList.toggle('active');
+  }
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function (event) {
+    const menu = document.querySelector('.menu');
+    const isClickInsideMenu = menu.contains(event.target);
+
+    if (!isClickInsideMenu) {
+      menu.classList.remove('active');
+    }
+  });
+
+  // Handle Sign In/Log Out logic
+  document.getElementById('signin-btn').addEventListener('click', function (event) {
+    event.stopPropagation(); // Prevent click from propagating to the document
+    if (this.textContent === 'Sign In') {
+      // Handle sign-in logic
+      this.textContent = 'Log Out';
+    } else {
+      // Handle log-out logic
+      this.textContent = 'Sign In';
+    }
+  });
+
+
+  function toggleUserMenu() {
+    const userMenu = document.querySelector('.user-menu');
+    userMenu.classList.toggle('active');
+  }
+
+  // Close menu when clicking outside
+  document.addEventListener('click', function (event) {
+    const userMenu = document.querySelector('.user-menu');
+    const isClickInsideMenu = userMenu.contains(event.target);
+
+    if (!isClickInsideMenu) {
+      userMenu.classList.remove('active');
+    }
+  });
+
+  document.addEventListener('click', function (event) {
+  const searchContainer = document.querySelector('.search-container');
+  const resultsContainer = document.getElementById('search-results');
+
+  // Check if the click occurred inside the search container
+  if (!searchContainer.contains(event.target)) {
+    resultsContainer.style.display = 'none'; // Hide the search results
+  }
+});
+
+function showResults(query) {
+      const resultsContainer = document.getElementById('search-results');
+
+      // If input is empty, hide the results
+      if (!query) {
+        resultsContainer.style.display = 'none';
+        return;
+      }
+
+      // Show results container
+      resultsContainer.style.display = 'block';
+
+      // Clear any previous results
+      resultsContainer.innerHTML = '';
+
+      // Array of random words/phrases
+      const randomWordsBefore = [
+        "Breaking:", "Latest:", "Trending:", "Featured:", "Exclusive:", 
+        "Hot Topic:", "Don't Miss:", "Just In:", "Top Story:", "Must Read:", 
+        "Highlight:", "Fresh News:"
+      ];
+
+      const randomWordsAfter = [
+        "in Sports", "Today", "News Update", "Highlights", "Around the World", 
+        "for You", "2024 Edition", "Special Coverage", "Breaking Analysis", 
+        "Insider Look", "Latest Developments", "Exclusive Details"
+      ];
+
+      // Generate search result items
+      const numResults = 5; // Limit number of results
+      for (let i = 1; i <= numResults; i++) {
+        const resultItem = document.createElement('a');
+        resultItem.href = `detail-article.html`; // Navigation link
+        resultItem.classList.add('result-item');
+
+        // Select random words
+        const randomBefore = randomWordsBefore[Math.floor(Math.random() * randomWordsBefore.length)];
+        const randomAfter = randomWordsAfter[Math.floor(Math.random() * randomWordsAfter.length)];
+
+        // Set dynamic content
+        resultItem.textContent = `${randomBefore} ${query} ${randomAfter}`;
+        resultsContainer.appendChild(resultItem);
+      }
+    }
+
+    // Add event listener to detect 'Enter' key press
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('keydown', function(event) {
+      if (event.keyCode == 13) {
+        const query1 = searchInput.value; // Get the query in lowercase
+
+        // Check if query is 'manchester'
+        if (query1.toLowerCase() === 'manchester') {
+          // Redirect to search.html
+          window.location.href = 'search.html';
+        } else {
+          // Otherwise, show results
+          showResults(query1);
+        }
+      }
+    });
+
+// Ensure the Buy Subscription link is only shown when a user is logged in
+document.addEventListener("DOMContentLoaded", () => {
+  const subscriptionLink = document.querySelector(".dropdown-menu a[href='buy-subscription.html']");
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    // User is logged in, show the Buy Subscription link
+    subscriptionLink.style.display = "block";
+  } else {
+    // User is not logged in, hide the Buy Subscription link
+    subscriptionLink.style.display = "none";
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  const userMenu = document.querySelector(".dropdown-user-menu");
+
+  if (loggedInUser) {
+    // User is logged in, show Profile and Log Out options
+    userMenu.innerHTML = `
+      <a href="profile.html" id="profile-link">Profile</a>
+      <a id="logout-link">Log Out</a>
+    `;
+
+    // Handle Log Out action
+    document.getElementById("logout-link").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser"); // Clear user data
+      window.location.href = "home.html"; // Redirect to home page
+    });
+  } else {
+    // User is not logged in, show Sign In and Register options
+    userMenu.innerHTML = `
+      <a href="login.html" id="signin-btn">Sign In</a>
+      <a href="register.html">Register</a>
+    `;
+  }
+});
+
+</script>
+
+</html>
